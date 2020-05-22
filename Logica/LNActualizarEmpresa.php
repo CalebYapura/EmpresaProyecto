@@ -13,16 +13,15 @@
              $_REQUEST['nit'],
              $_REQUEST['nombre'],
              $_REQUEST['direccion'],
-             $_REQUEST['cantidadProyectos'],
              $_REQUEST['logo'],
              $_REQUEST['telefono'],
              $_REQUEST['descripcion'],
              $activo
          );
          if ($exitoActualizar==1) {
-             echo "Los datos del empleado se actualizaron correctamente";
+             echo "Los datos del empresa se actualizaron correctamente";
          } else {
-             echo "Error en la actualizacion de datos del empleado";
+             echo "Error en la actualizacion de datos del empresa";
          }
      } else {
          $validacionNit = $objetoDBEmpresa->ValidarNit($_REQUEST['nit']);
@@ -35,16 +34,15 @@
                  $_REQUEST['nit'],
                  $_REQUEST['nombre'],
                  $_REQUEST['direccion'],
-                 $_REQUEST['cantidadProyectos'],
                  $_REQUEST['logo'],
                  $_REQUEST['telefono'],
                  $_REQUEST['descripcion'],
                  $activo
              );
              if ($exitoActualizar==1) {
-                 echo "Los datos del empleado se actualizaron correctamente";
+                 echo "Los datos de la empresa se actualizaron correctamente";
              } else {
-                 echo "Error en la actualizacion de datos del empleado";
+                 echo "Error en la actualizacion de datos de la empresa";
              }
          }
      }

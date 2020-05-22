@@ -17,7 +17,7 @@
     { 
     }
 
-    //funciones SET del empleado, se colocan los datos
+    //funciones SET del empresa, se colocan los datos
     public function setIdEmpleado($idEmpresa){$this->idEmpresa = $idEmpresa;}
     public function setNit($nit){$this->nit = $nit;}
     public function setNombre($nombre){$this->nombre = $nombre;}
@@ -27,7 +27,7 @@
     public function setDescripcion($descripcion){$this->descripcion = $descripcion;}
     public function setActivo($activo){$this->activo = $activo;}
 
-    //funciones GET del empleado, devuelven los datos
+    //funciones GET del empresa, devuelven los datos
     public function getIdEmpresa(){return $this->idEmpresa;}
     public function getNit(){return $this->nit;}
     public function getNombre(){return $this->nombre;}
@@ -36,6 +36,6 @@
     public function getTelefono(){return $this->telefono;}
     public function getDescripcion(){return $this->descripcion;}
     public function getActivo(){return $this->activo;}
-  }//end class Empleado
+  }//end class Empresa
 
  ?>

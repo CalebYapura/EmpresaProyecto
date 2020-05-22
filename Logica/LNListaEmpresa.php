@@ -23,11 +23,16 @@
 			return $datosEmpresa;
 		}
 
+		public function buscadorEmpresa($consulta)
+		{
+			$listaDeEmpresas = $this->objDBEmpresa->buscadorEmpresa($consulta);
+			
+			return $listaDeEmpresas;
+		}
+
 
 	}//end class
 
-    //$obj = new LNListaEmpleado();
-    //var_dump($obj->listaDeEmpleados());
  ?>
 
 

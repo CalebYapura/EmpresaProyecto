@@ -10,9 +10,7 @@
 <body>
 <h1>Bienvenido</h1>
 <h3 title = "Este es un Enlace a Listar Empresas"> <a href="./IUListaEmpresas.php">Empresas</a></h3>
-
-<h3 title = "Este es un Enlace a Formulario Departamentos"> <a href="./IURegistrarDepartamento.php">Registrar Proyectos</a></h3>
-
-
+<h3 title = "Este es un Enlace a Listar proyectos"> <a href="./IUListaProyectos.php">Proyectos</a></h3>
+<h3 title = "Este es un Enlace a Listar proyectos"> <a href="./IUListaEmpleados.php">Empleados</a></h3>
 </body>
 </html>

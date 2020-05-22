@@ -6,7 +6,7 @@
 		private $servidor = 'localhost'; //127.0.0.1
 		private $user = 'root'; // usuario del gestor de base de datos
 		private $password = ''; // password del usuario si tuviese
-		private $db = 'empresaProyectos'; // nombre de la base de datos
+		private $db = 'empresaproyectos'; // nombre de la base de datos
 
 		public function __construct()
 		{

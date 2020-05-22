@@ -10,25 +10,21 @@
         }
 
         public function listaDeEmpresas()
-        {   // realizando la consulta
+        {  
             $sqlListaDeEmpresas = "SELECT * 
             FROM empresa
             ORDER BY nombre asc;";
-            //preparando para ejecutar la consulta.
             $cmd = $this->conexion->prepare($sqlListaDeEmpresas);
-            //ejecuta la consulta
             $cmd->execute();
-            //variable para recibir la consulta en un areglo
             $listaDeEmpresasConsulta = $cmd->fetchAll();
-            //retornando un arreglo con la lista de empleados.
             return $listaDeEmpresasConsulta;
-        }//end function
+        }
         
         public function registrarEmpresa($idEmpresa,$nit,$nombre,$direccion,$cantidadProyectos,$logo, $telefono,$descripcion, $activo)
         {
             $sqlInsertarEmpresa= "
-            INSERT INTO empresa(idEmpresa,nit,nombre,direccion,cantidadProyectos,logo,telefono,descripcion,activo)
-            VALUES(:idEmpresa,:nit,:nombre,:direccion,:cantidadProyectos,:logo,:telefono,:descripcion,:activo);";
+            INSERT INTO empresa(idEmpresa,nit,nombre,direccion,logo,telefono,descripcion,activo)
+            VALUES(:idEmpresa,:nit,:nombre,:direccion,:logo,:telefono,:descripcion,:activo);";
 
             try {
                 $cmd = $this->conexion->prepare($sqlInsertarEmpresa);
@@ -36,7 +32,6 @@
                 $cmd->bindParam(':nit', $nit);
                 $cmd->bindParam(':nombre', $nombre);
                 $cmd->bindParam(':direccion', $direccion);
-                $cmd->bindParam(':cantidadProyectos', $cantidadProyectos);
                 $cmd->bindParam(':logo', $logo);
                 $cmd->bindParam(':telefono', $telefono);
                 $cmd->bindParam(':descripcion', $descripcion);
@@ -84,10 +79,10 @@
                 return null;
             }
         }
-        public function ActualizarEmpresa($idEmpresa,$nit,$nombre,$direccion,$cantidadProyectos,$logo,$telefono,$descripcion,$activo)
+        public function ActualizarEmpresa($idEmpresa,$nit,$nombre,$direccion,$logo,$telefono,$descripcion,$activo)
         {
             $sqlActualizarEmpresa = " UPDATE empresa 
-            SET nit=:nit,nombre=:nombre,direccion=:direccion,cantidadProyectos=:cantidadProyectos,logo=:logo,telefono=:telefono,descripcion=:descripcion,activo=:activo 
+            SET nit=:nit,nombre=:nombre,direccion=:direccion,logo=:logo,telefono=:telefono,descripcion=:descripcion,activo=:activo 
             WHERE idEmpresa=:idEmpresa;";
             try {
                 $cmd = $this->conexion->prepare($sqlActualizarEmpresa);
@@ -95,7 +90,6 @@
                 $cmd->bindParam(':nit', $nit);
                 $cmd->bindParam(':nombre', $nombre);
                 $cmd->bindParam(':direccion', $direccion);
-                $cmd->bindParam(':cantidadProyectos', $cantidadProyectos);
                 $cmd->bindParam(':logo', $logo);
                 $cmd->bindParam(':telefono', $telefono);
                 $cmd->bindParam(':descripcion', $descripcion);
@@ -130,6 +124,22 @@
                 echo 'ERROR: No se pudo eliminar los datos de la empresa'.$e->getMesage();
             }
         }  
+  //buscador   de empresas   
+        public function buscadorEmpresa($nombre)
+        {
+            $consulta="SELECT * FROM empresa"; 
+
+            $cmd = $this->conexion->prepare($consulta);
+
+            if($nombre){
+                $consulta+= "WHERE nombre LIKE '%:nombre%'";
+                $cmd->bindParam(':nombre', $nombre);
+            }
+
+
+            $listaEmpresa= $cmd->fetch();
+            return $listaEmpresa;
+        }
   
         
 
