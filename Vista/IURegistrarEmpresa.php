@@ -11,7 +11,7 @@
     <h1>Formulario</h1>
 
 
-    <form action="../Logica/LNRegistrarEmpresa.php" method="post" name="">
+    <form action="../Logica/LNRegistrarEmpresa.php" method="post" name="" enctype="multipart/form-data">
 
         <table border="3">
             <th></th>
@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td>Logo</td>
-                <td><input type="text" name="logo" id="logo" placeholder=" imagen del logo" required pattern="A-Za-z]+">
+                <td><input type="file" name="logo" id="logo">
                 </td>
             </tr>
 

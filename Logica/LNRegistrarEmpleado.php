@@ -26,22 +26,22 @@ if($_REQUEST['activo'] == 'S'){
 }else{
     $activo = 0;
 }
-$exitoRegistro = $objetoEmpleado->registrarEmpleado($_REQUEST['ci'],
-    $_REQUEST['idRol'],
-    $_REQUEST['primerNombre'],
-    $_REQUEST['segundoNombre'],
-    $_REQUEST['apellidoPaterno'],
-    $_REQUEST['apellidoMaterno'],
-    $_REQUEST['celular'],
-    $_REQUEST['usuario'],
-    $_REQUEST['contrasenia'],
-    $_REQUEST['fechaIngreso'],
-    $_REQUEST['fechaIngreso'],
-    $_REQUEST['fechaActualizacion'],
-    $_REQUEST['fechaRetiro'],
-    $_REQUEST['imagenCiAnverso'],
-    $_REQUEST['imagenCiReverso'],
-    $activo
+$exitoRegistro = $objetoEmpleado->registrarEmpleado($_REQUEST['idEmpleado'],
+                                                    $_REQUEST['idRol'],
+                                                    $_REQUEST['ci'],
+                                                    $_REQUEST['primerNombre'],
+                                                    $_REQUEST['segundoNombre'],
+                                                    $_REQUEST['apellidoPaterno'],
+                                                    $_REQUEST['apellidoMaterno'],
+                                                    $_REQUEST['celular'],
+                                                    $_REQUEST['usuario'],
+                                                    $_REQUEST['contrasenia'],
+                                                    $_REQUEST['fechaIngreso'],
+                                                    $_REQUEST['fechaActualizacion'],
+                                                    $_REQUEST['fechaRetiro'],
+                                                    $_REQUEST['imagenCiAnverso'],
+                                                    $_REQUEST['imagenCiReverso'],
+                                                    $activo
 );
 if($exitoRegistro==1){
     echo "los datos del empleado se registraron correctamente";

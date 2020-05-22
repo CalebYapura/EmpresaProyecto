@@ -1,3 +1,10 @@
+<?php
+require_once("../Modelo/DBEmpleado.php");
+$objetoEmpleado = new DBEmpleado();
+$rolActivos = $objetoEmpleado->listaDeRolesActivos();
+?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -19,12 +26,18 @@
             </td>
         </tr>
         <tr>
-            <td>idRol</td>
+            <td>Seleccione el rol</td>
             <td>
-                <input type="" name="idRol" id="idRol" placeholder="solo numeros "
-                       pattern="[0-9]+" title="" ">
-            </td>
+                <select name="idRol">
+                    <?php foreach ($rolActivos as $rol) {
+                        ?>
+                        <option value="<?php echo $rol['idRol'] ?>"><?php echo $rol['nombre'] ?></option>
 
+                    <?php } ?>
+                </select>
+                <!--                <input type="" name="idEmpresa" id="idEmpresa" placeholder="ingrese el id" required-->
+                <!--                       pattern="[0-9]+" title="solo numeros ">-->
+            </td>
         </tr>
 
         <tr>
@@ -68,13 +81,13 @@
             <td>contrasenia</td>
             <td>
                 <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña"
-                       required pattern="[A-Za-z]+">
+                       required pattern="[0-9-Aa-Zz]+">
             </td>
         </tr>
 
         <tr>
-            <td>Fecha Inicio</td>
-            <td><input type="date" name="fechaInicio"></td>
+            <td>Fecha Ingreso</td>
+            <td><input type="date" name="fechaIngreso"></td>
         </tr>
 
         <tr>

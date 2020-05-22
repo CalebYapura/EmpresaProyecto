@@ -36,6 +36,8 @@ $listaProyectos = $objLNListaProyectos->listaDeProyectos();
             <td><?php echo $regitroProyectos['cantidadEmpleados'];?></td>
             <td><?php echo $regitroProyectos['activo'];?></td>
 
+            <td><a href="../Vista/IUActualizarProyecto.php?idProyecto=<?php echo $regitroProyectos['idProyecto']; ?>">Actualizar</a>
+            <td><a href="../Logica/LNEliminarProyecto.php?idProyevto=<?php echo $regitroProyectos['idProyecto']; ?>">Eliminar</a>
 
         </tr>
         <?php } ?>

@@ -14,7 +14,8 @@ $listaEmpleados = $objLNListaEmpleado->listaDeEmpleados();
 <h1><font color="black">Lista de trabajadores</font></h1>
 <h3 title = "Volver al inicio"> <a href="../index.php">Inicio</a></h3>
 <h1><font color="black"></font></h1>
-
+<h3 align="center" title="Este es un Enlace a Listar Empleados"><a href="./IURegistrarEmpleado.php">Registrar</a>
+</h3>
 <table border = 2>
   <tr>
     
@@ -39,7 +40,6 @@ $listaEmpleados = $objLNListaEmpleado->listaDeEmpleados();
       <td><a href="../Logica/LNEliminarEmpleado.php?idEmpleado=<?php  echo $registroEmpleado['idEmpleado']; ?>">Eliminar</a></td>
 
   </tr>
-
 
 
   <?php } ?>

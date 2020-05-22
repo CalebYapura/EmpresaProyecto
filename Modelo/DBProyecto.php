@@ -12,14 +12,14 @@
 		public function listaDeProyectos()
 		{
 			$sqlListaDeProyectos = "SELECT em.nombre AS nombreEmpresa, p.nombre AS nombreProyecto,
-            COUNT(e.idEmpleado) AS cantidadEmpleados, p.activo
+            COUNT(e.idEmpleado) AS cantidadEmpleados, p.idProyecto,p.activo
 			FROM empleado e INNER JOIN asignacionProyecto ap
 			ON e.idEmpleado = ap.idEmpleado
 			INNER JOIN proyecto p
 			ON ap.idProyecto = p.idProyecto
 			INNER JOIN empresa em
 			ON p.idEmpresa = em.idEmpresa
-			GROUP BY nombreProyecto
+			GROUP BY p.idProyecto
 			ORDER BY em.nombre, p.nombre;
 				";
 			$cmd = $this->conexion->prepare($sqlListaDeProyectos);
@@ -87,6 +87,49 @@
         } else {
             return null;
         }
+    }
+    public function ActualizarProyectos($idProyecto,$idEmpresa,$nombre,$fechaInicio,$fechaFin,$fechaRealCulminacion,$descripcion,$activo)
+    {
+        $sqlActualizarProyecto = " UPDATE proyecto
+            SET idEmpresa=:idEmpresa,nombre=:nombre,fechaInicio=:fechaInicio,fechaFin=:fechaFin,fechaRealCulminacion=:fechaRealCulminacion,
+            descripcion=:descripcion,activo=:activo 
+            WHERE idProyecto=:idProyecto;";
+        try {
+            $cmd = $this->conexion->prepare($sqlActualizarProyecto);
+            $cmd->bindParam(':idProyecto', $idProyecto);
+            $cmd->bindParam(':idEmpresa', $idEmpresa);
+            $cmd->bindParam(':nombre', $nombre);
+            $cmd->bindParam(':fechaInicio', $fechaInicio);
+            $cmd->bindParam(':fechaFin', $fechaFin);
+            $cmd->bindParam(':fechaRealCulminacion', $fechaRealCulminacion);
+            $cmd->bindParam(':descripcion', $descripcion);
+            $cmd->bindParam(':activo', $activo);
+            if ($cmd->execute()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            echo 'ERROR: No se logro actualizar los datos del Proyecto - ' . $e->getMesage();
+            exit();
+            return 0;
+        }
+    }
+    //elininando los datos del proyecto
+    public function EliminarProyecto($idProyecto)
+    {
+        $sqlEliminarProyecto= "DELETE FROM proyecto WHERE idProyecto = :idProyecto;";
+
+
+        $cmd = $this->conexion->prepare($sqlEliminarProyecto);
+        $cmd->bindParam(':idProyecto', $idProyecto);
+
+        if ($cmd->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }
+
     }
 
     }

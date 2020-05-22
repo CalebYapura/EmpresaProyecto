@@ -16,7 +16,7 @@
 
     <h1>Actualizar Empresa</h1>
 
-    <form action="../Logica/LNActualizarEmpresa.php" method="post" name="   ">
+    <form action="../Logica/LNActualizarEmpresa.php" method="post" name="   " enctype="multipart/form-data" >
         
 
         <input type="hidden" name="idEmpresa" value="<?php echo $datosEmpresa['idEmpresa'] ?>">
@@ -50,8 +50,7 @@
             </tr>
             <tr>
                 <td>Logo</td>
-                <td><input type="text" name="logo" id="logo" placeholder=" imagen del logo" required pattern="A-Za-z]+"
-                        value="<?php echo $datosEmpresa['logo'] ?>"> </td>
+                <td><input type="file" name="logo" id="logo" required> </td>
             </tr>
 
             <tr>

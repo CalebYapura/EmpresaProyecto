@@ -12,8 +12,8 @@ class DBEmpresa
 
         public function listaDeEmpresas()
         {  
-            $sqlListaDeEmpresas = "SELECT e.logo AS Logo,e.nombre AS nombre , e.telefono AS Telefono,COUNT(p.idProyecto) AS cantidadproyectos, e.direccion AS Direccion, e.activo AS Estado
-FROM empresa e INNER JOIN proyecto p on e.idEmpresa=p.idEmpresa
+            $sqlListaDeEmpresas = "SELECT e.*,COUNT(p.idProyecto) AS totalProyecto , e.direccion, e.activo
+FROM empresa e left JOIN proyecto p on e.idEmpresa=p.idEmpresa
 GROUP BY e.idEmpresa
 ORDER BY e.nombre ASC;";
             $cmd = $this->conexion->prepare($sqlListaDeEmpresas);

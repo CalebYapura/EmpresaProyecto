@@ -28,7 +28,7 @@ if (isset($_REQUEST['nombre']) || isset($_REQUEST['nit']) || isset($_REQUEST['cp
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
-<body style="background-color:##C8F7F1;">
+<body style="background-color:#C8F7F1;">
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -95,8 +95,11 @@ if (isset($_REQUEST['nombre']) || isset($_REQUEST['nit']) || isset($_REQUEST['cp
                     <th>Logo</th>
                     <th>Nombre</th>
                     <th>Telefono</th>
+                    <th>totalProyecto</th>
                     <th>Direccion</th>
                     <th>Estado</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
 
                 </tr>
                 </thead>
@@ -105,9 +108,12 @@ if (isset($_REQUEST['nombre']) || isset($_REQUEST['nit']) || isset($_REQUEST['cp
                 foreach ($listaEmpresas as $registroEmpresas) {
                     ?>
                     <tr>
-                        <!--                        <td>--><?php //echo $registroEmpresas['logo']; ?><!--</td>-->
+                        <td><img src="../img/<?php echo $registroEmpresas['logo']; ?>" height="80px">
+
+                            </td>
                         <td><?php echo $registroEmpresas['nombre']; ?></td>
                         <td><?php echo $registroEmpresas['telefono']; ?></td>
+                        <td><?php echo $registroEmpresas['totalProyecto']; ?></td>
                         <td><?php echo $registroEmpresas['direccion']; ?></td>
                         <td><?php echo $registroEmpresas['activo']; ?></td>
 
