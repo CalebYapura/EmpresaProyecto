@@ -16,7 +16,7 @@
 
 
        print_r($existeDatosUsuario);
-    if ($existeDatosUsuario && $existeDatosUsuario['activo']==1) {
+    if ($existeDatosUsuario && $existeDatosUsuario['estado']==1) {
 
         if($existeDatosUsuario['idRol']==1){ //admin
             header("Location: ../Vista/indexAdmin.php");
