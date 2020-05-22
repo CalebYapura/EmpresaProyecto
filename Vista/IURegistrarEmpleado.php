@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>Actualizar Empleado</h1>
+<h1>Registrar Empleado</h1>
 
 <form action="../Logica/LNRegistrarEmpleado.php" method="post" name="   ">
 

@@ -16,6 +16,8 @@ $listaProyectos = $objLNListaProyectos->listaDeProyectos();
 
     <h1>Lista de Proyectos</h1>
     <h3 title="Volver al inicio"> <a href="../index.php">Inicio</a></h3>
+    <h3 align="center" title="Este es un Enlace a Listar Empresas"> <a href="./IURegistrarProyecto.php">Registrar</a>
+    </h3>
     <table border=3>
         <tr>
             <th>Nombre Empresa</th>

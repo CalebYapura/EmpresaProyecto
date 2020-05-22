@@ -161,13 +161,14 @@ fechaActualizacion,fechaRetiro,imagenCiAnverso,imagenCiReverso,activo)
                 echo 'ERROR: No se pudo eliminar los datos '.$e->getMesage();
             }
         }
+        //lista de empleados activos
         public function listaDeEmpleadoActivos()
         {
             $sqlListaEmpleadosActivos = "
-            SELECT idEmpleado, ci, CONCAT_WS(' ',primerNombre,segundoNombre,apellidoPaterno,
-            apellidoMaterno)as nombreEmpleado, telefono,genero,fechaNacimiento, activo
+           SELECT idEmpleado, ci, CONCAT_WS(' ',primerNombre,segundoNombre,apellidoPaterno,
+            apellidoMaterno)as nombreEmpleado,celular, estado
             FROM empleado
-            WHERE activo = 1
+            WHERE estado = 1
             ORDER BY primerNombre,segundoNombre,apellidoPaterno,apellidoMaterno;";
             $cmd = $this->conexion->prepare($sqlListaEmpleadosActivos);
             $cmd->execute();
@@ -176,11 +177,15 @@ fechaActualizacion,fechaRetiro,imagenCiAnverso,imagenCiReverso,activo)
         }
         // lista de emplados por jefe  y departamento
 
-        public function listaDeEmpleadosMasDepartamento($idEmpleadoJ)
+        public function listaDeEmpleadosMasProyecto($idEmpleadoJ)
         {
-            $sqlListaEmpleadosActivos ="SELECT * FROM empleado as e 
-            INNER JOIN departamento as d on e.idEmpleado=d.idEmpleado
-            WHERE e.idEmpleado=:idEmpleado;";
+            $sqlListaEmpleadosActivos =" SELECT ci, CONCAT_WS(' ',primerNombre,segundoNombre,apellidoPaterno,apellidoMaterno)as nombreEmpleado, p.nombre AS proyectos
+FROM empleado e INNER JOIN asignacionProyecto ap
+ON e.idEmpleado = ap.idEmpleado
+INNER JOIN proyecto p
+ON ap.idProyecto = p.idProyecto
+GROUP BY nombreEmpleado
+ORDER BY nombreEmpleado;";
             $cmd = $this->conexion->prepare($sqlListaEmpleadosActivos);
             $cmd->bindParam(':idEmpleado', $idEmpleadoJ);
             $cmd->execute();
@@ -189,15 +194,14 @@ fechaActualizacion,fechaRetiro,imagenCiAnverso,imagenCiReverso,activo)
         }
 
         // autenticacion de usuaruo y contrasenia
-
         public function verificarUsuarioContrasenia($usuario, $contrasenia)
         {
             $sqlVerificarusuario = "
-              SELECT *
+           SELECT *
               FROM rol r INNER JOIN empleado e
               ON e.idRol = r.idRol
               WHERE usuario = :usuario
-              AND contrasenia = :contrasenia;";
+              AND contrasenia = :contrasenia";
 
             $cmd = $this->conexion->prepare($sqlVerificarusuario);
             $cmd->bindParam(':usuario', $usuario);

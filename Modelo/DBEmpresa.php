@@ -11,16 +11,17 @@
 
         public function listaDeEmpresas()
         {  
-            $sqlListaDeEmpresas = "SELECT * 
-            FROM empresa
-            ORDER BY nombre asc;";
+            $sqlListaDeEmpresas = "SELECT e.logo AS Logo,e.nombre AS nombre , e.telefono AS Telefono,COUNT(p.idProyecto) AS cantidadproyectos, e.direccion AS Direccion, e.activo AS Estado
+FROM empresa e INNER JOIN proyecto p on e.idEmpresa=p.idEmpresa
+GROUP BY e.idEmpresa
+ORDER BY e.nombre ASC;";
             $cmd = $this->conexion->prepare($sqlListaDeEmpresas);
             $cmd->execute();
             $listaDeEmpresasConsulta = $cmd->fetchAll();
             return $listaDeEmpresasConsulta;
         }
         
-        public function registrarEmpresa($idEmpresa,$nit,$nombre,$direccion,$cantidadProyectos,$logo, $telefono,$descripcion, $activo)
+        public function registrarEmpresa($idEmpresa,$nit,$nombre,$direccion,$logo, $telefono,$descripcion, $activo)
         {
             $sqlInsertarEmpresa= "
             INSERT INTO empresa(idEmpresa,nit,nombre,direccion,logo,telefono,descripcion,activo)
@@ -47,7 +48,7 @@
                 return 0;
             }
         }
-//validando el nit de empresa 
+//validando el nit de empresa para la actualizacion
         public function ValidarNit($nit)
         {
             $sqlValidarNit = "SELECT * FROM empresa WHERE nit = :nit";
@@ -123,7 +124,20 @@
             } catch (PDOException $e) {
                 echo 'ERROR: No se pudo eliminar los datos de la empresa'.$e->getMesage();
             }
-        }  
+        }
+
+//lista de empresas activas
+    public function listaDeEmpresasActivos(){
+        $sqlListaEmpresasActivos = "
+			SELECT idEmpresa, nit,nombre,direccion,logo,telefono,descripcion,activo
+			FROM empresa
+			WHERE activo = 1
+			ORDER BY idEmpresa, nit,nombre, direccion, logo,telefono, descripcion,activo;";
+        $cmd = $this->conexion->prepare($sqlListaEmpresasActivos);
+        $cmd->execute();
+        $listaDeEmpresasConsulta = $cmd->fetchAll();
+        return $listaDeEmpresasConsulta;
+    }
   //buscador   de empresas   
         public function buscadorEmpresa($nombre)
         {

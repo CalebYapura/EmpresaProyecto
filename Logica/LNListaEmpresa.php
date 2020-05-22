@@ -23,13 +23,13 @@
 			return $datosEmpresa;
 		}
 
-		public function buscadorEmpresa($consulta)
-		{
-			$listaDeEmpresas = $this->objDBEmpresa->buscadorEmpresa($consulta);
-			
-			return $listaDeEmpresas;
-		}
 
+		public function listaDeEmpresasActivos($consulta)
+		{
+			$listaDeEmpresasActivos = $this->objDBEmpresa->listaDeEmpresasActivos($consulta);
+
+			return $listaDeEmpresasActivos;
+		}
 
 	}//end class
 

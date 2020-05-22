@@ -11,7 +11,8 @@
 
 		public function listaDeProyectos()
 		{
-			$sqlListaDeProyectos = "SELECT em.nombre AS nombreEmpresa, p.nombre AS nombreProyecto, COUNT(e.idEmpleado) AS cantidadEmpleados, p.activo
+			$sqlListaDeProyectos = "SELECT em.nombre AS nombreEmpresa, p.nombre AS nombreProyecto,
+            COUNT(e.idEmpleado) AS cantidadEmpleados, p.activo
 			FROM empleado e INNER JOIN asignacionProyecto ap
 			ON e.idEmpleado = ap.idEmpleado
 			INNER JOIN proyecto p
@@ -30,12 +31,12 @@
         public function registrarProyecto($idProyecto,$idEmpresa,$nombre,$fechaInicio,$fechaFin,$fechaRealCulminacion,$descripcion,$activo)
         {
             $sqlInsertarEmpresa= "
-            INSERT INTO empresa(idProyecto,idEmpresa,nombre,fechaInicio,fechaFin,fechaRealCulminacion,descripcion,activo)
+            INSERT INTO proyecto(idProyecto,idEmpresa,nombre,fechaInicio,fechaFin,fechaRealCulminacion,descripcion,activo)
             VALUES(:idProyecto,:idEmpresa,:nombre,:fechaInicio,:fechaFin,:fechaRealCulminacion,:descripcion,:activo);";
 
             try {
                 $cmd = $this->conexion->prepare($sqlInsertarEmpresa);
-                $cmd->bindParam(':idProyecto', $idEmpresa);
+                $cmd->bindParam(':idProyecto', $idProyecto);
                 $cmd->bindParam(':idEmpresa', $idEmpresa);
                 $cmd->bindParam(':nombre', $nombre);
                 $cmd->bindParam(':fechaInicio', $fechaInicio);
@@ -54,12 +55,13 @@
                 return 0;
             }
         }
+
 //validando el nit de empresa
-    public function ValidarNit($nit)
+    public function ValidarIdProyecto($nit)
     {
-        $sqlValidarNit = "SELECT * FROM empresa WHERE nit = :nit";
-        $cmd = $this->conexion->prepare($sqlValidarNit);
-        $cmd->bindParam(':nit', $nit);
+        $sqlValidaIdProyecto = "SELECT * FROM proyecto WHERE idProyecto = :idProyecto";
+        $cmd = $this->conexion->prepare($sqlValidaIdProyecto);
+        $cmd->bindParam(':idProyecto', $idProyecto);
         $cmd->execute();
 
         $resultado = $cmd->fetch();
@@ -70,7 +72,7 @@
             return 0;
         }
     }
-    //recuperando datos del departamento pra actualizar
+    //recuperando datos del proyecto pra actualizar
     public function datosProyecto($idProyecto)
     {
         $sqlDatosProyecto = "SELECT * FROM proyecto WHERE idProyecto = :idproyecto;";

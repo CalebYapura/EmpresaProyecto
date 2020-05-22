@@ -15,6 +15,14 @@
 			$listaDeProyectos = $this->objDBProyecto->listaDeProyectos();
 			return $listaDeProyectos;
         }
+
+        public function datosProyecto()
+        {
+            $datosProyecto = $this->objDBProyecto->datosProyecto();
+            return $datosProyecto;
+        }
+
+
         
     }
 ?>

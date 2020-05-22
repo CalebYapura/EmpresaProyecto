@@ -1,7 +1,7 @@
 <?php
-require_once("../Logica/LNListaDepartamento.php");
-$objLNListaDepartamento = new LNListaDepartamento();    ///  idempleado jefe
-$empleado = $objLNListaDepartamento->listaDeEmpleadosMasDepartamento('2');
+require_once("../Logica/LNListaProyecto.php");
+$objLNListaDepartamento = new LNListaproyecto();    ///  idempleado jefe
+$empleado = $objLNListaDepartamento->listaDeEmpleadosMasProyecto('2');
 
 ?>
 
@@ -13,9 +13,9 @@ $empleado = $objLNListaDepartamento->listaDeEmpleadosMasDepartamento('2');
 
 </head>
 <body>
-<h3 title="Volver al inicio"> <a href="IURegistrarDepartamento.php">Inicio Registrar</a></h3>
+<h3 title="Volver al inicio"> <a href="IURegistrarLider.php">Inicio Registrar</a></h3>
 
-    <a href="./IUListaEmpleadosDepartamento.php?idEmpleado=<?php echo $empleado['idEmpleado']; ?>&idDepartamento=<?php echo $empleado['idDepartamento']; ?>">lista de empleados  </a>
+    <a href="./IUListaEmpleados.php?idEmpleado=<?php echo $empleado['idEmpleado']; ?>&idProyecto=<?php echo $empleado['idProyecto']; ?>">lista de empleados  </a>
 
     <a href="./UIDepartamento.php">Ver Proyecto</a>
 </body>
